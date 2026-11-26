@@ -1,0 +1,23 @@
+device: cuda
+seed: 42
+model:
+  base: pretrained_models/Qwen-Image-2.1
+data:
+  manifest: data/rawmoment_data/train/stage1.jsonl
+  split_key: split
+  crop_size: 1024
+  workers: 4
+loss:
+  image_l1: 1.0
+  latent_l1: 1.0
+  kl: 1.0
+  lpips: 0.1
+training:
+  batch_size: 4
+  micro_batch_size: 1
+  max_steps: 100000
+  learning_rate: 0.00002
+  weight_decay: 0.0
+  max_grad_norm: 1.0
+  log_every: 10
+  save_every: 1000

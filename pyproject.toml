@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rawmoment"
+version = "0.1.0"
+description = "Two-stage RAW-conditioned image restoration"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.9,<3", "numpy>=1.26", "opencv-python-headless>=4.11",
+  "PyYAML>=6", "safetensors>=0.4", "tqdm>=4.66", "accelerate>=1.2",
+  "diffusers>=0.41.0.dev0,<0.43", "transformers>=5,<6",
+]
+
+[project.optional-dependencies]
+train = ["lpips==0.1.4", "torchvision>=0.24,<1"]
+dev = ["ruff>=0.11"]
+
+[project.scripts]
+rawmoment-infer = "rawmoment.infer:main"
+rawmoment-align-realblur = "rawmoment.align_realblur:main"
+rawmoment-train = "rawmoment.train:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

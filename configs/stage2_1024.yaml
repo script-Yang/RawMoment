@@ -1,0 +1,28 @@
+device: cuda
+seed: 42
+model:
+  base: pretrained_models/Qwen-Image-2.1
+  stage1_weights: weights/1024/stage1-vae.safetensors
+  stage2_weights: weights/1024/stage2-dit.safetensors
+  lora_rank: 256
+  lora_alpha: 256
+  spatial_width: 64
+  spatial_patch_size: 2
+  physics_tokens: 64
+  gradient_checkpointing: true
+prompt:
+  cache: assets/prompt.safetensors
+data:
+  dataset: rawmoment_bench
+  manifest: data/rawmoment_data/train/stage2.jsonl
+  crop_size: 1024
+  workers: 4
+training:
+  batch_size: 4
+  micro_batch_size: 1
+  max_steps: 100000
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  log_every: 10
+  save_every: 1000
