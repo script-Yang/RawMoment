@@ -31,7 +31,7 @@ RawMoment adapts a RAW encoder to the pretrained RGB latent space, then restores
 | RealBlur, processed for RawMoment | 3,758 training pairs and 980 test pairs; 512 × 512 evaluation | [Train](https://huggingface.co/datasets/yscript/RawMoment/tree/main/realblur_processed_data/train) · [Test](https://huggingface.co/datasets/yscript/RawMoment/tree/main/realblur_processed_data/test) |
 | GoPro, processed for RawMoment | 6,309 training samples (2,103 source pairs × 3 variants) and 1,111 test samples; 512 × 512 | [Train](https://huggingface.co/datasets/yscript/RawMoment/tree/main/gopro_processed_data/train) · [Test](https://huggingface.co/datasets/yscript/RawMoment/tree/main/gopro_processed_data/test) |
 
-Dataset downloads require manual access approval.
+The datasets are publicly available on Hugging Face.
 
 ### Model checkpoints
 
@@ -42,7 +42,7 @@ Dataset downloads require manual access approval.
 | 512 × 512 | [stage1-vae](https://huggingface.co/yscript/RawMoment/blob/main/512/stage1-vae.safetensors) | [stage2-dit](https://huggingface.co/yscript/RawMoment/blob/main/512/stage2-dit.safetensors) |
 | 1024 × 1024 | [stage1-vae](https://huggingface.co/yscript/RawMoment/blob/main/1024/stage1-vae.safetensors) | [stage2-dit](https://huggingface.co/yscript/RawMoment/blob/main/1024/stage2-dit.safetensors) |
 
-Stage 2 checkpoints contain DiT adapters and conditioners. The checkpoint repository is currently private.
+Stage 2 checkpoints contain DiT adapters and conditioners. The checkpoints are publicly available on Hugging Face.
 
 ## Installation
 
@@ -64,7 +64,7 @@ The fixed prompt embeddings are included in [`assets/`](assets/).
 
 ## Data
 
-The [Hugging Face dataset](https://huggingface.co/datasets/yscript/RawMoment) contains RawMoment training and validation data, RawMoment-Bench, and processed RealBlur and GoPro training and test data. Downloads require manual access approval.
+The [Hugging Face dataset](https://huggingface.co/datasets/yscript/RawMoment) contains RawMoment training and validation data, RawMoment-Bench, and processed RealBlur and GoPro training and test data. All released data are publicly available.
 
 RawMoment training pairs are synthesized from [OpenVid-1M](https://github.com/NJU-PCALab/OpenVid-1M).
 
@@ -75,10 +75,9 @@ Processed RealBlur is derived from [RealBlur](https://github.com/rimchang/RealBl
 
 Processed GoPro follows the same data preparation protocol as the RawMoment training and test data in the paper. It retains the official GOPRO_Large train/test split. See the [data notes](https://huggingface.co/datasets/yscript/RawMoment/blob/main/gopro_processed_data/README.md).
 
-After your request is approved, download and extract the data:
+Download and extract the data:
 
 ```bash
-hf auth login
 hf download yscript/RawMoment --repo-type dataset --local-dir data
 (cd data && find rawmoment_data realblur_processed_data gopro_processed_data -name '*.tar' -exec tar -xf {} \;)
 ```
@@ -101,7 +100,7 @@ See [DATA.md](DATA.md) for manifest fields, image formats and normalization.
 
 ## Weights
 
-With access to the checkpoint repository, download a matching `stage1-vae` and `stage2-dit` pair from the [model checkpoints table](#model-checkpoints) into `weights/`:
+Download a matching `stage1-vae` and `stage2-dit` pair from the [model checkpoints table](#model-checkpoints) into `weights/`:
 
 ```bash
 hf download yscript/RawMoment --repo-type model --local-dir weights \
